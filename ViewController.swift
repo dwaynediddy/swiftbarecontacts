@@ -7,20 +7,67 @@
 
 import UIKit
 
-class TableRowVC: UIViewController {
+class TableRowVC: UIViewController
+//                  UITableViewDelegate,
+//                  UITableViewDataSource
+{
+    var tableView = UITableView()
+//
+////    var petitions[Petition]()
+//
     override func viewDidLoad() {
-        
-        var tableView = UITableView()
+        super.viewDidLoad()
+//
+            tableView = UITableView()
             tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
+//            tableView.dataSource = self
+//            tableView.delegate = self
             tableView.backgroundColor = UIColor.red
             tableView.register(UITableViewCell.self, forCellReuseIdentifier: "my")
             view.addSubview(tableView)
-        
-        super.viewDidLoad()
-        print("yeeeeeeeeet")
-        
+//
+//        let urlString = "https://reqres.in/api/users"
+//        let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+//
+////        let url = URL(string: urlString) {
+////            if let data = try?Data(contentsOf: url) {
+////                parse(json: data)
+////
+////            }
+////        }
     }
-}
+//        func parse(json: Data) {
+//            let decoder = JSONDecoder()
+//
+//            if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
+////                petitions = jsonPetitions.results
+//                tableView.reloadData()
+//            }
+//        }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        var cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")
+//
+//        if cell == nil {
+//            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellIdentifier")
+//        }
+//
+//        print("\(#function) --- section = \(indexPath.section), row = \(indexPath.row)")
+//
+////        cell!.textLabel?.text = petitions[indexPath.row][0]
+////
+////        cell!.detailTextLabel?.text = contacts[indexPath.row][1]
+//
+//        return cell!
+//    }
+//    // adding a row for each user
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+////            return petitions.count
+//            return 3
+//        }
+//
+//
+ }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -49,16 +96,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             super.viewDidLoad()
             
             // Do any additional setup after loading the view, typically from a nib.
-            tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
+                tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
                 tableView.dataSource = self
                 tableView.delegate = self
                 tableView.backgroundColor = UIColor.yellow
-                tableView.register(UITableViewCell.self, forCellReuseIdentifier: "my")
+                tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
                 view.addSubview(tableView)
                     
         }
     
     //            let urlString = "https://reqres.in/api/users"
+    
+    
     //            let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
                 
     //            if let url = URL(string: urlString) {
@@ -122,65 +171,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
         {
-            //let contact = contacts[indexPath.row]
+            
+//            let contact = contacts[indexPath.row]
             let vc = TableRowVC()
             self.navigationController?.pushViewController(vc, animated: true)
         }
     
-//        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//            if let url = URL(string: "tel://" + contacts[indexPath.row][1]) {
-//            print(url)
-//            }
-//        }
-//
-//        func didTapForDetails() {
-//            let userDetails = CNContactPickerViewController()
-//                userDetails.delegate = self
-//            present(userDetails, animated: true)
-//
-//        }
-//
-//    func userPicker(_picker: CNContactPickerViewController, didSelect user: CNContact) {
-//        print("\n\n (user)")
-//    }
-
-    
-//    
-//    class CNContactViewController : UIViewController {
-//        convenience init(for contacts: CNContact) {
-//
-//        }
-//    }
-    
-//    class CNContact : NSObject {
-//
-//    }
-//
-//    class CNContactPicker : NSObject {
-//        var displayedKeys: [String] {
-//            return ["details"]
-//        }
-//
-//    }
-    
-    
-    
-
-    // MARK: - Table view data source
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-//     MARK: - Navigation
-//
-//     In a storyboard-based application, you will often want to do a little preparation before navigation
-//    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//         Get the new view controller using segue.destination.
-//         Pass the selected object to the new view controller.
-    }
-    
+}
 
 
