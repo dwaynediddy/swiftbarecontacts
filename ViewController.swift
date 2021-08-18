@@ -7,176 +7,97 @@
 
 import UIKit
 
-class TableRowVC: UIViewController
-//                  UITableViewDelegate,
-//                  UITableViewDataSource
-{
-    var tableView = UITableView()
-//
-////    var petitions[Petition]()
-//
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//
-            tableView = UITableView()
-            tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
-//            tableView.dataSource = self
-//            tableView.delegate = self
-            tableView.backgroundColor = UIColor.red
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "my")
-            view.addSubview(tableView)
-//
-//        let urlString = "https://reqres.in/api/users"
-//        let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
-//
-////        let url = URL(string: urlString) {
-////            if let data = try?Data(contentsOf: url) {
-////                parse(json: data)
-////
-////            }
-////        }
-    }
-//        func parse(json: Data) {
-//            let decoder = JSONDecoder()
-//
-//            if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-////                petitions = jsonPetitions.results
-//                tableView.reloadData()
-//            }
-//        }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")
-//
-//        if cell == nil {
-//            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellIdentifier")
-//        }
-//
-//        print("\(#function) --- section = \(indexPath.section), row = \(indexPath.row)")
-//
-////        cell!.textLabel?.text = petitions[indexPath.row][0]
-////
-////        cell!.detailTextLabel?.text = contacts[indexPath.row][1]
-//
-//        return cell!
-//    }
-//    // adding a row for each user
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////            return petitions.count
-//            return 3
-//        }
-//
-//
- }
-
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-        var tableView = UITableView()
-    
-        let contacts:[[String]] = [
-            ["Elon Musk",       "+1-201-3141-5926"],
-            ["Bill Gates",      "+1-202-5358-9793"],
-            ["Tim Cook",        "+1-203-2384-6264"],
-            ["Richard Branson", "+1-204-3383-2795"],
-            ["Jeff Bezos",      "+1-205-0288-4197"],
-            ["Warren Buffet",   "+1-206-1693-9937"],
-            ["The Zuck",        "+1-207-5105-8209"],
-            ["Carlos Slim",     "+1-208-7494-4592"],
-            ["Bill Gates",      "+1-209-3078-1640"],
-            ["Larry Page",      "+1-210-6286-2089"],
-            ["Harold Finch",    "+1-211-9862-8034"],
-            ["Sergey Brin",     "+1-212-8253-4211"],
-            ["Jack Ma",         "+1-213-7067-9821"],
-            ["Steve Ballmer",   "+1-214-4808-6513"],
-            ["Phil Knight",     "+1-215-2823-0664"],
-            ["Paul Allen",      "+1-216-7093-8446"],
-            ["Woz",             "+1-217-0955-0582"]
-        ]
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            // Do any additional setup after loading the view, typically from a nib.
-                tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
-                tableView.dataSource = self
-                tableView.delegate = self
-                tableView.backgroundColor = UIColor.yellow
-                tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
-                view.addSubview(tableView)
-                    
-        }
-    
-    //            let urlString = "https://reqres.in/api/users"
-    
-    
-    //            let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
-                
-    //            if let url = URL(string: urlString) {
-    //                if let data = try? Data(contentsOf: url) {
-    //                    parse(json: data)
-    //                }
-    //
-    //            }
-                        
-        
-    //    func parse(json: Data) {
-    //        let decoder = JSONDecoder()
-    //
-    //        if let jsonContacts = try? decoder.decode(Contacts.self, from: json) {
-    //                contacts = jsonContacts.results
-    //                tableView.reloadData()
-    //            }
-    //        }
-    //    }
-                
-
-//                if let url = URL(string: urlString) {
-//                    if let data = try? Data(contentsOf: url) {
-//                        // we're OK to parse!
-//                        parse(json: data)
-//                    }
-//                }
-//            }
-    
-//
-//        func parse(json: Data) {
-//            let decoder = JSONDecoder()
-//
-//            if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-//                petitions = jsonPetitions.results
-//                tableView.reloadData()
-//            }
-//        }
-
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            var cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")
-
-            if cell == nil {
-                cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellIdentifier")
-            }
-
-            print("\(#function) --- section = \(indexPath.section), row = \(indexPath.row)")
-
-            cell!.textLabel?.text = contacts[indexPath.row][0]
-            
-//            can uncomment to add phone numbers under names
-//            cell!.detailTextLabel?.text = contacts[indexPath.row][1]
-
-            return cell!
-        }
-        // adding a row for each user
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return contacts.count
-            }
-    
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-        {
-            
-//            let contact = contacts[indexPath.row]
-            let vc = TableRowVC()
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    
+struct User: Codable {
+    var id: Int
+    var email: String
+    var first_name: String
+    var last_name: String
+    var avatar: String
 }
 
+struct Users: Codable {
+    var data: [User]
+}
 
+class TableRowVC: UIViewController {
+    var user: User?
+    init(user: User) {
+        self.user = user
+        //super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        self.user = nil
+        super.init(coder: aDecoder)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let textView = UITextView()
+        textView.frame = self.view.bounds
+        textView.text = user?.email
+        let bg = UIView(frame: self.view.bounds)
+        bg.backgroundColor = UIColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 1.0)
+        bg.addSubview(textView)
+        view.addSubview(bg)
+    }
+}
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var users = [User]()
+    var tableView = UITableView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.white
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
+        view.addSubview(tableView)
+        
+        if let url = URL(string: "https://reqres.in/api/users") {
+            if let data = try? Data(contentsOf: url) {
+                parse(json: data)
+            }
+        }
+                
+    }
+    
+    func parse(json: Data) {
+        let decoder = JSONDecoder()
+        
+        print("parse that shit")
+
+        if let jsonUsers = try? decoder.decode(Users.self, from: json) {
+            print("decoded")
+            users = jsonUsers.data
+            print(users)
+            tableView.reloadData()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier")
+
+        if cell == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellIdentifier")
+        }
+        let user = users[indexPath.row]
+        cell!.textLabel?.text = user.first_name + " " + user.last_name
+
+        return cell!
+    }
+
+    // adding a row for each user
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return users.count
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = TableRowVC(user: users[indexPath.row])
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}

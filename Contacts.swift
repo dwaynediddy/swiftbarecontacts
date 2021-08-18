@@ -6,11 +6,3 @@
 //
 
 import Foundation
-
-//struct Contacts: Codable {
-//    var data: [Data]
-//}
-
-struct Petitions: Codable {
-    var results: [Petition]
-}
